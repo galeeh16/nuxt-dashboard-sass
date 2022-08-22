@@ -1,10 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "NODE_ENV=development nuxt build",
+    "buildProd": "NODE_ENV=production nuxt build",
     "dev": "nuxt dev -p 3333",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "css": "sass ./assets/scss/source.scss ./assets/app.css --watch"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.0.0-0",

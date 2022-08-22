@@ -8,23 +8,11 @@
 </template>
 
 <script setup>
-// const ApexCharts = defineAsyncComponent(() => import("vue3-apexcharts"));
-// export default {
-//     name: 'ApexChart',
-//     components: {
-//         [process.client && 'apexchart']: () => import('vue3-apexcharts'),
-//     },
-//     props: {
-//         options: Object,
-//         series: Array,
-//         type: String,
-//         height: {
-//             required: false,
-//             type: Number,
-//             default: 200
-//         }
-//     }
-// }
+onMounted(() => {
+    nextTick(() => {
+        window.dispatchEvent(new Event('resize'));
+    });
+});
 
 defineProps({
     options: Object,
@@ -37,3 +25,31 @@ defineProps({
     }
 })
 </script>
+
+<!-- 
+<template>
+  <client-only>
+    <component
+      :is="apexchart"
+      height="160"
+      width="320"
+      type="area"
+      :options="options"
+      :series="series"
+    />
+  </client-only>
+</template>
+
+<script>
+export default {
+  computed: {
+    apexchart() {
+      return () => {
+        if (process.client) {
+          return import('vue3-apexcharts')
+        }
+      }
+    }
+  }
+}
+</script> -->

@@ -5,4 +5,4 @@ export default defineNuxtPlugin((nuxtApp) => {
         // The app.use(VueApexCharts) will make <apexchart> component available everywhere.
         nuxtApp.vueApp.use(VueApexCharts)
     }
-})
+});

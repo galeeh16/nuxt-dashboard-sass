@@ -46,7 +46,8 @@ useHead({
     title: 'My Nuxt App'
 });
 
-const isSidebarShow = ref(localStorage.getItem('isSidebarShow') || true);
+// const isSidebarShow = ref(localStorage.getItem('isSidebarShow') || true);
+const isSidebarShow = ref(true);
 
 const toggleSidebar = () => {
     isSidebarShow.value = !isSidebarShow.value;

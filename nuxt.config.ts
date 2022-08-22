@@ -1,4 +1,7 @@
 import { defineNuxtConfig } from 'nuxt'
+import { GlobalSettings } from './env'
+
+const appEnv = process.env.NODE_ENV || 'development';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -33,13 +36,17 @@ export default defineNuxtConfig({
     ],
 
     runtimeConfig: {
-        customUrl: process.env.NUXT_API_URL, // hanya diaksesnya di SSR bukan di client/public
+        customUrl: GlobalSettings[appEnv].apiUrl, // hanya diaksesnya di SSR bukan di client/public
         secretKeyToken: 'VYW4auAOodIOk9WNM2wQutvRzfnpuiFdxQ1SGEAfguLSYwSwOjufvCt5rcpVMyOP',
         public: {
-          apiUrl: process.env.NUXT_API_URL, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+          apiUrl: GlobalSettings[appEnv].apiUrl, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
         }
     },
-
+    // build: {
+    //     vendor: [
+    //         'vue3-apexchart'
+    //     ]
+    // },
     modules: [
         '@nuxtjs/google-fonts'
     ],
