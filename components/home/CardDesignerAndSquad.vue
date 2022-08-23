@@ -5,14 +5,13 @@
         </div>
         <div class="card-body">
             <div>
-                <ApexChart width="100%" type="bar" :options="options" :series="series" :height="250"></ApexChart>
+                <apex-chart width="100%" type="bar" :options="options" :series="series" :height="250"></apex-chart>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import ApexChart from '../ApexChart.vue';
 import { ref } from 'vue';
 
 let options = ref({

@@ -55,7 +55,6 @@ export default defineNuxtConfig({
         inject: true,
         families: {
             'Inter': [100, 300, 400, 500, 600, 700],
-            'Public+Sans': [100, 300, 400, 500, 600, 700],
         }
     },
     plugins: [

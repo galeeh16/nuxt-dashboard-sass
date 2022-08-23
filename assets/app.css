@@ -105,21 +105,21 @@ li.multiselect-option.is-selected:hover {
 button.btn-sidebar div:nth-of-type(1) {
   width: 30px;
   height: 3px;
-  background-color: #687085;
+  background-color: #898c93;
   margin-bottom: 5px;
   border-radius: 6;
 }
 button.btn-sidebar div:nth-of-type(2) {
   width: 30px;
   height: 3px;
-  background-color: #687085;
+  background-color: #898c93;
   margin-bottom: 5px;
   border-radius: 4px;
 }
 button.btn-sidebar div:nth-of-type(3) {
   width: 22px;
   height: 3px;
-  background-color: #687085;
+  background-color: #898c93;
   border-radius: 4px;
 }
 button.btn-sidebar:focus, button.btn-sidebar:active {
@@ -198,6 +198,7 @@ button.btn-sidebar:hover div {
 }
 .sidebar-nav ul li a.router-link-exact-active {
   color: #8a2aff;
+  font-weight: 600;
   background-color: rgba(131, 42, 255, 0.14);
 }
 .sidebar-nav ul li a.router-link-exact-active::after {

@@ -1,7 +1,9 @@
 <template>
     <div id="sidebar" :class="[props.isSidebarShow ? '' : 'sidebar-hidden']">
         <div class="sidebar-logo position-relative">
-            <h3 style="font-family: sans-serif; font-weight: 700;" class="text-primary">Admiin </h3>
+            <NuxtLink href="/" class="text-decoration-none">
+                <h3 style="font-family: sans-serif; font-weight: 700;" class="text-primary">Admiin </h3>
+            </NuxtLink>
         </div>
         <div class="sidebar-nav">
             <ul>
@@ -15,19 +17,13 @@
                     </a>
                     <ul id="collapseExample" class="collapse">
                         <li>
-                            <NuxtLink href="/admin/users">
-                                <span>Users</span>
-                            </NuxtLink>
+                            <NuxtLink href="/admin/users"><span>Users</span></NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink href="/admin/squads">
-                                <span>Squads</span>
-                            </NuxtLink>
+                            <NuxtLink href="/admin/squads"><span>Squads</span></NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink href="/admin/products">
-                                <span>Products</span>
-                            </NuxtLink>
+                            <NuxtLink href="/admin/products"><span>Products</span></NuxtLink>
                         </li>
                     </ul>
 
@@ -57,5 +53,4 @@ import Icon from '@/components/icon/index.vue';
 const props = defineProps({
     isSidebarShow: Boolean
 })
-
 </script>

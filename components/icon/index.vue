@@ -1,5 +1,5 @@
 <template>
-    <vue-feather :type="type" :size="size"></vue-feather>
+    <vue-feather :type="type" :size="size" v-bind="$attrs"></vue-feather>
 </template>
 
 <script setup>

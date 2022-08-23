@@ -25,31 +25,3 @@ defineProps({
     }
 })
 </script>
-
-<!-- 
-<template>
-  <client-only>
-    <component
-      :is="apexchart"
-      height="160"
-      width="320"
-      type="area"
-      :options="options"
-      :series="series"
-    />
-  </client-only>
-</template>
-
-<script>
-export default {
-  computed: {
-    apexchart() {
-      return () => {
-        if (process.client) {
-          return import('vue3-apexcharts')
-        }
-      }
-    }
-  }
-}
-</script> -->
