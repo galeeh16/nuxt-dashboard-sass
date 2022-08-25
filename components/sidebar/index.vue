@@ -1,8 +1,9 @@
 <template>
     <div id="sidebar" :class="[props.isSidebarShow ? '' : 'sidebar-hidden']">
         <div class="sidebar-logo position-relative">
-            <NuxtLink href="/" class="text-decoration-none">
-                <h3 style="font-family: sans-serif; font-weight: 700;" class="text-primary">Admiin </h3>
+            <NuxtLink href="/" class="text-decoration-none d-flex align-items-start">
+                <Logo />
+                <h3 style="font-family: sans-serif; font-weight: 700;" class="text-primary m-0 ms-2">Admiin </h3>
             </NuxtLink>
         </div>
         <div class="sidebar-nav">

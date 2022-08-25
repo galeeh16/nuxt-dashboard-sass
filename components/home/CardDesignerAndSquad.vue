@@ -20,8 +20,9 @@ let options = ref({
             show: false
         }
     },
+    colors: ['#8a2aff', '#02d46b'], // untuk warna dot dibawah chart
     fill: {
-        colors: ['#0084ff', '#00c261']
+        colors: ['#8a2aff', '#02d46b'] // warna chart
     },
     plotOptions: {
         bar: {

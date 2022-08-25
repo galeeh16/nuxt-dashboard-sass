@@ -21,13 +21,13 @@ let options = ref({
         }
     },
     fill: {
-        colors: ['#0084ff']
+        colors: ['#8a2aff']
     },
     plotOptions: {
         bar: {
             distributed: false, // different color each bar
             columnWidth: '70%',
-            borderRadius: 4,
+            borderRadius: 5,
         },
     },
     xaxis: {
@@ -39,6 +39,7 @@ let series = ref([
     {
         name: 'Total Designer',
         data: [20, 35, 40, 49, 60, 70, 91, 112, 144]
-    }
+    },
+    
 ]);
 </script>

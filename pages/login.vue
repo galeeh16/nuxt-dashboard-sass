@@ -2,7 +2,12 @@
     <div id="wrapper-login" class="d-flex">
         <div class="left">
             <div class="login">
-                <h2 class="mb-5 fw-bold">Login</h2>
+                <!-- <div class="d-flex justify-content-center">
+                    <Logo style="width: 50px; margin-bottom: 20px;" />
+                </div> -->
+
+                <h2 class="mb-5 fw-semibold">Login to App</h2>
+
                 <form method="post" @submit.prevent="doLogin" spellcheck="false">
                     <div class="mb-4">
                         <label for="email" class="fw-semibold">Email</label>

@@ -10,10 +10,12 @@
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.0.0-0",
-    "nuxt": "3.0.0-rc.6"
+    "nuxt": "npm:nuxt3@latest"
   },
   "dependencies": {
     "@vueform/multiselect": "^2.5.2",
+    "@vuelidate/core": "^2.0.0-alpha.44",
+    "@vuelidate/validators": "^2.0.0-alpha.31",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "feather-icons": "^4.29.0",

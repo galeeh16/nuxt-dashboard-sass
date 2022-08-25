@@ -13,7 +13,11 @@
                 show sidebar: {{ isSidebarShow }}
 
                 <!-- kanan -->
-                <div>
+                <div class="d-flex align-items-center">
+                    <div class="me-4">
+                        <NuxtLink href="/login">Login</NuxtLink>
+                    </div>
+
                     <div class="d-flex dropdown">
                         <a class="rounded-circle dropdown-toggle bg-soft-primary d-flex align-items-center justify-content-center" 
                             style="width: 45px; height: 45px; border: 3px solid #ab82df; cursor: pointer;"
