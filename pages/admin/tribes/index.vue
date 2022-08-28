@@ -4,19 +4,24 @@
       <h5 class="card-title mb-0">Management Tribes</h5>
     </div>
     <div class="card-body">
-       <div class="d-flex justify-content-between align-items-center mb-3">
-          <div class="d-flex align-items-center">
-            <div class="me-1">Show</div>
-            <select name="rows_per_page" id="rows_per_page" class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 66px">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
-            <div class="ms-1">Entries</div>
-          </div>
+      <button type="button" class="btn btn-primary d-flex mb-4" data-bs-toggle="modal" data-bs-target="#modalAddTribe"><Icon type="plus-circle" class="me-1" /> Add Tribe</button>
+      
+      <ModalAdd @onSubmitForm="submitHandler" />
+    
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+          <div class="me-1">Show</div>
+          <select class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 66px">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+          <div class="ms-1">Entries</div>
+        </div>
 
-          <input type="text" class="form-control" style="max-width: 300px;" placeholder="Search...">
+        <!-- <input type="text" v-model.lazy="search" class="form-control" style="max-width: 300px;" placeholder="Search..."> -->
+        <Search v-model.lazy="search" placeholder="Search tribe..." />
       </div>
 
       <div class="table-responsive">
@@ -62,35 +67,33 @@
         </table>
       </div>
 
-      <div class="d-flex justify-content-between mt-3 mt-lg-3 mt-xl-0">
-        <div>
-          Showing {{ dataTribes.length }} of {{ totalData }} entries
-        </div>
-
-        <paginate
-          v-model="page"
-          :page-count="totalPage"
-          :page-range="10"
-          :margin-pages="2"
-          :click-handler="changePage"
-          :prev-text="'Prev'"
-          :next-text="'Next'"
-          :container-class="'pagination'"
-          :page-class="'page-item'"
-        >
-        </paginate>
-      </div>
+      <Paginate 
+        :page="page"
+        :dataLength="dataTribes.length"
+        :totalData="totalData"
+        :totalPage="totalPage"
+        :changePage="changePage"
+      />
     </div>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import Paginate from '@/components/table/paginate.vue';
+import Search from '@/components/table/search.vue';
+import ModalAdd from '@/components/admin/tribes/add.vue';
 
 useHead({
   title: 'Management Tribes'
 });
+
+let showModal = ref(false);
+const closeModal = () => {
+  showModal.value = false;
+}
 
 let page = ref(1);
 let loading = ref(false);
@@ -98,6 +101,8 @@ let dataTribes = ref([]);
 let totalData = ref(0);
 let perPage = ref(10);
 let totalPage = ref(0);
+
+let search = ref('');
 
 let config = useRuntimeConfig();
 
@@ -116,8 +121,6 @@ const getData = async (p = 1) => {
   } catch (err) {
     loading.value = false;
   }
-  
-
 }
 
 onMounted(() => {
@@ -130,6 +133,11 @@ const changePage = async (page) => {
 
 const changePerPage = async () => {
   await getData(1);
+}
+
+
+const submitHandler = (data) => {
+  console.log('submit from parent index', data);
 }
 
 </script>

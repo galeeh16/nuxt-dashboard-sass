@@ -29,6 +29,12 @@ $card-border-radius: 12px;
 $card-border-width: 0 !important;
 $card-cap-padding-y: 12px;
 
+// Modal 
+$btn-close-width: 12px;
+$btn-close-height: $btn-close-width;
+$btn-close-focus-shadow: none;
+
+
 .table tr th {
     font-weight: 500;
 }

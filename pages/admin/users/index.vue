@@ -74,23 +74,13 @@
 								</table>
 						</div>
 
-						<div class="d-flex justify-content-between mt-3 mt-lg-3 mt-xl-0">
-							<div>
-								Showing {{ dataUsers.length }} of {{ totalData }} entries
-							</div>
-							<paginate
-								v-model="page"
-								:page-count="totalPage"
-								:page-range="10"
-								:margin-pages="2"
-								:click-handler="changePage"
-								:prev-text="'Prev'"
-								:next-text="'Next'"
-								:container-class="'pagination'"
-								:page-class="'page-item'"
-							>
-							</paginate>
-						</div>
+						<Paginate 
+							:page="page"
+							:dataLength="dataUsers.length"
+							:totalData="totalData"
+							:totalPage="totalPage"
+							:changePage="changePage"
+						/>
 				</div>
 		</div>
 	</div>
@@ -98,6 +88,7 @@
 
 <script setup>
 import Icon from '@/components/icon/index.vue';
+import Paginate from '@/components/table/paginate.vue';
 import axios from 'axios';
 import { ref } from 'vue';
 

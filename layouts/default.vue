@@ -45,6 +45,7 @@
 <script setup>
 import Sidebar from "../components/sidebar/index.vue";
 import { ref, onMounted, onUpdated } from 'vue';
+import '@vueform/multiselect/themes/default.css';
 
 useHead({
     title: 'My Nuxt App'
