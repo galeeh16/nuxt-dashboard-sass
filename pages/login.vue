@@ -2,20 +2,22 @@
     <div id="wrapper-login" class="d-flex">
         <div class="left">
             <div class="login">
-                <!-- <div class="d-flex justify-content-center">
-                    <Logo style="width: 50px; margin-bottom: 20px;" />
-                </div> -->
-
                 <h2 class="mb-5 fw-semibold">Login to App</h2>
+
+                <div v-if="errMsg">
+                    <div class="alert alert-danger d-flex">
+                        <Icon type="alert-triangle" class="me-2"/> {{ errMsg }}
+                    </div>
+                </div>
 
                 <form method="post" @submit.prevent="doLogin" spellcheck="false">
                     <div class="mb-4">
-                        <label for="email" class="fw-semibold">Email</label>
+                        <label for="email" class="fw-semibold mb-1">Email</label>
                         <input type="text" name="email" class="form-control px-3 py-2" maxlength="70" v-model="form.email" tabindex="1" />
                     </div>
                     <div class="mb-5">
                         <div class="d-flex justify-content-between">
-                            <label for="password" class="fw-semibold">Password</label>
+                            <label for="password" class="fw-semibold mb-1">Password</label>
                             <NuxtLink href="/forgot-password" class="text-decoration-none" tabindex="3" style="font-size: 14px;">Forgot Password</NuxtLink>
                         </div>
                         <div class="position-relative">
@@ -68,25 +70,35 @@ let form = ref({
     password: null
 });
 
+let errMsg = ref(null);
+
 const config = useRuntimeConfig();
 const router = useRouter();
 
 const doLogin = async () => {
-    const apiUrl = config.public.apiUrl + '/api/v1/auth/login';
-    const response = await axios.post(apiUrl, form.value);
-    const data = await response.data;
+    try {
+        const apiUrl = config.public.apiUrl + '/api/v1/auth/login';
+        const response = await axios.post(apiUrl, form.value);
+        const data = await response.data;
 
-    auth.value.email = form.value.email;
-    auth.value.name = data.user.name;
-    auth.value.id = data.user.id;
-    auth.value.token = data.token;
+        auth.value.email = form.value.email;
+        auth.value.name = data.user.name;
+        auth.value.id = data.user.id;
+        auth.value.token = data.token;
 
-    localStorage.setItem("userId", data.user.id);
-    localStorage.setItem("userEmail", data.user.email);
-    localStorage.setItem("userName", data.user.name);
-    localStorage.setItem("accessToken", data.token);
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("userEmail", data.user.email);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("accessToken", data.token);
 
-    router.replace({path: "/"});    
+        router.replace({path: "/"});
+    } catch (err) {
+        if(err.response) {
+            if (err.response.status == 401) {
+                errMsg.value = err.response.data.message;
+            }
+        }
+    } 
 }
 
 </script>

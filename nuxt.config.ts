@@ -61,5 +61,6 @@ export default defineNuxtConfig({
         { src: '~/plugins/feathericons.ts' },
         { src: '~/plugins/apexchart.ts' },
         { src: '~/plugins/bootstrap.ts' },
-    ],    
+        { src: '~/plugins/vuepaginate.ts' },
+    ],   
 });

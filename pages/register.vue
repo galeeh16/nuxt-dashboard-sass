@@ -10,21 +10,21 @@
 
                 <form method="post" @submit.prevent="doRegister" spellcheck="false">
                     <div class="mb-4">
-                        <label class="fw-semibold">Email</label>
+                        <label class="fw-semibold mb-1">Email</label>
                         <input type="text" name="email" class="form-control px-3 py-2" :class="[v$.email.$errors.length > 0 ? 'is-invalid' : '']" maxlength="70" v-model="form.email" tabindex="1" />
                         <div v-if="v$.email.$errors.length > 0" class="text-danger mt-1">
                             {{ v$.email.$errors[0].$message }}
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="fw-semibold">Name</label>
+                        <label class="fw-semibold mb-1">Name</label>
                         <input type="text" name="name" class="form-control px-3 py-2" :class="[v$.email.$errors.length > 0 ? 'is-invalid' : '']" maxlength="70" v-model="form.name" tabindex="2" />
                         <div v-if="v$.name.$errors.length > 0" class="text-danger mt-1">
                             {{ v$.name.$errors[0].$message }}
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="fw-semibold">Password</label>
+                        <label for="password" class="fw-semibold mb-1">Password</label>
                         <div class="position-relative">
                             <input type="password" name="password" tabindex="3" v-model="form.password" :class="[v$.email.$errors.length > 0 ? 'is-invalid' : '']" class="form-control px-3 py-2 pe-5" maxlength="40" />
                             <div v-if="v$.password.$errors.length > 0" class="text-danger mt-1">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <label for="password" class="fw-semibold">Confirm Password</label>
+                        <label for="password" class="fw-semibold mb-1">Confirm Password</label>
                         <div class="position-relative">
                             <input type="password" name="password" tabindex="4" v-model.lazy="form.confirmPassword" class="form-control px-3 py-2 pe-5" :class="[v$.email.$errors.length > 0 ? 'is-invalid' : '']" maxlength="40" />
                             <div v-if="v$.confirmPassword.$errors.length > 0" class="text-danger mt-1">
@@ -73,6 +73,8 @@ let form = ref({
   confirmPassword: '',
 });
 
+const router = useRouter();
+
 const mustSameWithPassword = (value) => value === form.value.password;
 
 const rules = {
@@ -90,8 +92,8 @@ const rules = {
         $autoDirty: true,
     },
     confirmPassword: {
-        required: helpers.withMessage('Password cannot be blank', required),
-        mustSameWithPassword: helpers.withMessage('Confirmation password are invalid', mustSameWithPassword),
+        required: helpers.withMessage('Password confirmation cannot be blank', required),
+        mustSameWithPassword: helpers.withMessage('Password confirmation are invalid', mustSameWithPassword),
         $autoDirty: true,
         // $lazy: true
     }
@@ -106,6 +108,8 @@ const doRegister = () => {
     };
 
     // post data ke backend
+
+    router.push({ path: '/login' })
 }
 
 </script>

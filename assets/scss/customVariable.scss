@@ -8,6 +8,8 @@ $font-size-base: 0.94rem;
 $border-color: #eaecef;
 
 $primary: #8a2aff !default;
+$danger: #d7083c !default;
+$text-danger: #d7083c !default;
 
 // Button 
 $success: #00ba57 !default;
@@ -45,11 +47,26 @@ h5 {
 .bg-soft-primary {
     background-color: rgba(131, 42, 255, 0.2) !important;
 }
+.btn.bg-soft-primary:hover {
+    background-color: rgba(131, 42, 255, 0.3) !important;
+}
 .bg-soft-danger {
     background-color: rgba(255, 42, 49, 0.2) !important;
 }
+.btn.bg-soft-danger:hover {
+    background-color: rgba(255, 42, 49, 0.4) !important;
+}
 .bg-soft-success {
     background-color: rgba(42, 255, 92, 0.2) !important;
+}
+.btn.bg-soft-success {
+    background-color: rgba(42, 255, 92, 0.3) !important;
+}
+.bg-soft-info {
+    background-color: rgba(13, 202, 240, 0.3) !important;
+}
+.btn.bg-soft-info {
+    background-color: rgba(13, 202, 240, 0.5) !important;
 }
 
 // Multiselect 
@@ -78,19 +95,31 @@ li.multiselect-option.is-selected:hover {
     color: $primary !important;
 }
 /* width */
-.multiselect-dropdown::-webkit-scrollbar {
+.multiselect-dropdown::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar {
     width: 8px;
+    height: 10px;
 }
 /* Track */
-.multiselect-dropdown::-webkit-scrollbar-track {
+.multiselect-dropdown::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 /* Handle */
-.multiselect-dropdown::-webkit-scrollbar-thumb {
+.multiselect-dropdown::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb {
     background: #a8a9ae;
     border-radius: 2px;
 }
 /* Handle on hover */
-.multiselect-dropdown::-webkit-scrollbar-thumb:hover {
+.multiselect-dropdown::-webkit-scrollbar-thumb:hover,
+.table-responsive::-webkit-scrollbar-thumb:hover {
     background: #8d8d91;
+}
+
+.page-item .page-link {
+    cursor: pointer !important;
+}
+.page-link:focus {
+    box-shadow: none !important;
 }

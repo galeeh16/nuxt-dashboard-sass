@@ -38,7 +38,7 @@ let options = ref({
 let series = ref([
     {
         name: 'Total Designer',
-        data: [20, 35, 40, 49, 60, 70, 91, 112, 144]
+        data: [30, 35, 40, 49, 60, 70, 91, 112, 144]
     },
     
 ]);

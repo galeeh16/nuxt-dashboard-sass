@@ -21,6 +21,9 @@
                             <NuxtLink href="/admin/users"><span>Users</span></NuxtLink>
                         </li>
                         <li>
+                            <NuxtLink href="/admin/tribes"><span>Tribes</span></NuxtLink>
+                        </li>
+                        <li>
                             <NuxtLink href="/admin/squads"><span>Squads</span></NuxtLink>
                         </li>
                         <li>
@@ -29,13 +32,6 @@
                     </ul>
 
                 </li>
-                <li>
-                    <NuxtLink to="/aboutt"><Icon type="layers" /> <span>Page Not Found</span></NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/not-authorize"><Icon type="layers" /> <span>Private Route</span></NuxtLink>
-                </li>
-
                 <li>
                     <span class="sidebar-title">Admin</span>
                 </li>
