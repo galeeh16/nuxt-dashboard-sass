@@ -14,7 +14,7 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
           <div class="me-1">Show</div>
-          <select class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 66px">
+          <select class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 70px">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="25">25</option>
@@ -36,6 +36,7 @@
               <th class="text-center text-nowrap">Nama Tribe</th>
               <th class="text-center text-nowrap">Status Tribe</th>
               <th class="text-center text-nowrap">Ecosystem</th>
+              <th class="text-center text-nowrap">Created At</th>
               <th class="text-center text-nowrap" style="width: 160px;">Action</th>
             </tr>
           </thead>
@@ -52,14 +53,20 @@
             <template v-else>
               <tr v-for="(tribe, i) in dataTribes" :key="tribe.tribe_id">
                 <td class="text-center">{{ (((page - 1) * perPage) + 1) + i }}</td>
-                <td>{{ tribe.kode_tribe }}</td>
+                <td>
+                  <div class="d-flex align-items-center" style="gap: 4px;">
+                    {{ tribe.kode_tribe }}
+                    <span v-if="tribe.is_new" class="badge bg-soft-primary text-primary text-sm" style="font-size: 9.5px; padding: 2px 4px;">New</span>
+                  </div>
+                </td>
                 <td class="text-nowrap">{{ tribe.nama_tribe }}</td>
                 <td class="text-center">
                   <span v-if="tribe.status_tribe === 'Supported'" class="badge bg-soft-success text-success">{{ tribe.status_tribe }}</span>
                   <span v-else-if="tribe.status_tribe === 'Unsupported yet'" class="badge bg-soft-primary text-primary">{{ tribe.status_tribe }}</span>
-                  <span v-else class="badge bg-danger">{{ tribe.status_tribe }}</span>
+                  <span v-else class="badge bg-soft-danger text-danger">{{ tribe.status_tribe }}</span>
                 </td>
                 <td class="text-nowrap">{{ tribe.ecosystem?.kode_ecosystem + ' (' + tribe.ecosystem?.nama_ecosystem + ')'}}</td>
+                <td>{{ tribe.created_at }}</td>
                 <td class="d-flex justify-content-center">
                   <button type="button" class="btn bg-soft-primary text-primary border-0 btn-sm me-2 d-flex">
                     <Icon type="edit-3" :size="13" class="me-1" />
@@ -137,14 +144,12 @@ const getData = async (p = 1) => {
 
 const searchData = async (searchParam) => {
   try {
-    console.log('searchParam', searchParam)
     page.value = 1;
     search.value = searchParam;
     loading.value = true;
 
     const response = await axios.get(`${config.public.apiUrl}/api/v1/admin/tribes?page=${page.value}&limit=${perPage.value}&search=${searchParam}`);
     const { data, meta } = await response.data;
-    console.log('data', data);
 
     dataTribes.value = data;
     totalPage.value = meta.last_page;
@@ -169,14 +174,17 @@ const changePerPage = async () => {
   await getData(1);
 }
 
+let modalAddTribe = ref();
 
 const submitHandler = async (params) => {
-
   showSpinner.value = true;
+
   try {
     const response = await axios.post(`${config.public.apiUrl}/api/v1/admin/tribes`, params);
     const data = await response.data;
-    showSpinner.value = true;
+    showSpinner.value = false;
+
+    modalAddTribe.value.hide();
 
     await getData(1);
 
@@ -190,9 +198,8 @@ const submitHandler = async (params) => {
   }
 }
 
-// onMounted(() => {
-//   const myModalAlternative = new bootstrap.Modal('#modalAddTribe');
-//   myModalAlternative.show();
-// })
+onMounted(() => {
+  modalAddTribe.value = new bootstrap.Modal('#modalAddTribe');
+})
 
 </script>
