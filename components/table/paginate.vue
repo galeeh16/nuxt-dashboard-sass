@@ -5,10 +5,9 @@
     </div>
 
     <paginate
-      :value="page"
-      @change="event => page = event.target.value"
+      v-model="page"
       :page-count="totalPage"
-      :page-range="10"
+      :page-range="pageRange"
       :margin-pages="2"
       :click-handler="changePage"
       :prev-text="'Prev'"
@@ -27,5 +26,10 @@ defineProps({
   totalData: Number,
   totalPage: Number,
   changePage: Function,
+  pageRange: {
+    required: false,
+    default: 3,
+    type: Number
+  }
 });
 </script>

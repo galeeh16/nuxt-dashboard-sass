@@ -34,6 +34,10 @@ $btn-close-width: 12px;
 $btn-close-height: $btn-close-width;
 $btn-close-focus-shadow: none;
 
+.alert-danger {
+    color: #a9022c !important;
+}
+
 
 .table tr th {
     font-weight: 500;

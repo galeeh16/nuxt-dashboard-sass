@@ -1,11 +1,14 @@
 <template>
     <div id="wrapper-login" class="d-flex">
+        
+        <Spinner :show="showSpinner" />
+
         <div class="left">
             <div class="login">
                 <h2 class="mb-5 fw-semibold">Login to App</h2>
 
                 <div v-if="errMsg">
-                    <div class="alert alert-danger d-flex">
+                    <div class="alert alert-danger d-flex text-danger">
                         <Icon type="alert-triangle" class="me-2"/> {{ errMsg }}
                     </div>
                 </div>
@@ -22,7 +25,7 @@
                         </div>
                         <div class="position-relative">
                             <input :type="isHidden ? 'password' : 'text'" name="password" tabindex="2" v-model="form.password" class="form-control px-3 py-2 pe-5" maxlength="40" />
-                            <i class="bi position-absolute eye-login" @click="isHidden = !isHidden" :class="[isHidden ? 'bi-eye-slash' : 'bi-eye']"></i>
+                            <Icon :type="[isHidden ? 'eye-off' : 'eye']" class="position-absolute eye-login" @click="isHidden = !isHidden"/>
                         </div>
                     </div>
                     <div class="mb-4">
@@ -64,6 +67,7 @@ useHead({
 })
 
 let isHidden = ref(true);
+let showSpinner = ref(false);
 
 let form = ref({
     email: null,
@@ -76,6 +80,7 @@ const config = useRuntimeConfig();
 const router = useRouter();
 
 const doLogin = async () => {
+    showSpinner.value = true;
     try {
         const apiUrl = config.public.apiUrl + '/api/v1/auth/login';
         const response = await axios.post(apiUrl, form.value);
@@ -90,9 +95,10 @@ const doLogin = async () => {
         localStorage.setItem("userEmail", data.user.email);
         localStorage.setItem("userName", data.user.name);
         localStorage.setItem("accessToken", data.token);
-
+        showSpinner.value = false;
         router.replace({path: "/"});
     } catch (err) {
+        showSpinner.value = false;
         if(err.response) {
             if (err.response.status == 401) {
                 errMsg.value = err.response.data.message;
@@ -139,7 +145,7 @@ const doLogin = async () => {
     }
 
     .eye-login {
-        top: 8px; 
+        top: 12px; 
         right: 13px; 
         color: #a4b1bc; 
         cursor: pointer;

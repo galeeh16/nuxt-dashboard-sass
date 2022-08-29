@@ -1,5 +1,8 @@
 <template>
   <div class="card">
+    
+    <Spinner :show="showSpinner" />
+
     <div class="card-header">
       <h5 class="card-title mb-0">Management Tribes</h5>
     </div>
@@ -20,8 +23,8 @@
           <div class="ms-1">Entries</div>
         </div>
 
-        <!-- <input type="text" v-model.lazy="search" class="form-control" style="max-width: 300px;" placeholder="Search..."> -->
-        <Search v-model.lazy="search" placeholder="Search tribe..." />
+        <!-- <input type="text" @input="debounceSearch" class="form-control" style="max-width: 300px;" placeholder="Search..."> -->
+        <Search v-model="search" :delay="300" placeholder="Search tribe..." @searching="searchData" />
       </div>
 
       <div class="table-responsive">
@@ -33,7 +36,7 @@
               <th class="text-center text-nowrap">Nama Tribe</th>
               <th class="text-center text-nowrap">Status Tribe</th>
               <th class="text-center text-nowrap">Ecosystem</th>
-              <th class="text-center text-nowrap">Action</th>
+              <th class="text-center text-nowrap" style="width: 160px;">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -58,8 +61,14 @@
                 </td>
                 <td class="text-nowrap">{{ tribe.ecosystem?.kode_ecosystem + ' (' + tribe.ecosystem?.nama_ecosystem + ')'}}</td>
                 <td class="d-flex justify-content-center">
-                  <button type="button" class="btn bg-soft-primary text-primary border-0 btn-sm me-2">Edit</button>
-                  <button type="button" class="btn bg-soft-danger text-danger border-0 btn-sm">Delete</button>
+                  <button type="button" class="btn bg-soft-primary text-primary border-0 btn-sm me-2 d-flex">
+                    <Icon type="edit-3" :size="13" class="me-1" />
+                    Edit
+                  </button>
+                  <button type="button" class="btn bg-soft-danger text-danger border-0 btn-sm d-flex">
+                    <Icon type="trash-2" :size="13" class="me-1" />
+                    Delete
+                  </button>
                 </td>
               </tr>
             </template>
@@ -73,6 +82,7 @@
         :totalData="totalData"
         :totalPage="totalPage"
         :changePage="changePage"
+        :page-range="3"
       />
     </div>
 
@@ -95,6 +105,8 @@ const closeModal = () => {
   showModal.value = false;
 }
 
+let showSpinner = ref(false);
+
 let page = ref(1);
 let loading = ref(false);
 let dataTribes = ref([]);
@@ -109,7 +121,7 @@ let config = useRuntimeConfig();
 const getData = async (p = 1) => {
   try {
     loading.value = true;
-    const response = await axios.get(`${config.public.apiUrl}/api/v1/admin/tribes?page=${page.value}&limit=${perPage.value}`);
+    const response = await axios.get(`${config.public.apiUrl}/api/v1/admin/tribes?page=${p}&limit=${perPage.value}&search=${search.value}`);
     const { data, meta } = await response.data;
 
     dataTribes.value = data;
@@ -123,21 +135,64 @@ const getData = async (p = 1) => {
   }
 }
 
+const searchData = async (searchParam) => {
+  try {
+    console.log('searchParam', searchParam)
+    page.value = 1;
+    search.value = searchParam;
+    loading.value = true;
+
+    const response = await axios.get(`${config.public.apiUrl}/api/v1/admin/tribes?page=${page.value}&limit=${perPage.value}&search=${searchParam}`);
+    const { data, meta } = await response.data;
+    console.log('data', data);
+
+    dataTribes.value = data;
+    totalPage.value = meta.last_page;
+    totalData.value = meta.total;
+
+    loading.value = false;
+  } catch (err) {
+    loading.value = false;
+  }
+}
+
 onMounted(() => {
   getData(1);
 });
 
-const changePage = async (page) => {
-  await getData(page);
+const changePage = async (p) => {
+  await getData(p);
 }
 
 const changePerPage = async () => {
+  page.value = 1;
   await getData(1);
 }
 
 
-const submitHandler = (data) => {
-  console.log('submit from parent index', data);
+const submitHandler = async (params) => {
+
+  showSpinner.value = true;
+  try {
+    const response = await axios.post(`${config.public.apiUrl}/api/v1/admin/tribes`, params);
+    const data = await response.data;
+    showSpinner.value = true;
+
+    await getData(1);
+
+  } catch (err) {
+    showSpinner.value = false;
+    if (err.response) {
+      if (err.response.status == 422) {
+        alert(err.response.status);
+      }
+    }
+  }
 }
+
+// onMounted(() => {
+//   const myModalAlternative = new bootstrap.Modal('#modalAddTribe');
+//   myModalAlternative.show();
+// })
 
 </script>

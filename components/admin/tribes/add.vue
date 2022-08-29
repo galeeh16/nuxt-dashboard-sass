@@ -8,7 +8,7 @@
         <div class="modal-content">
           <div class="modal-header px-4">
             <h5 class="modal-title mb-0">Add Tribe</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="$emit('closeModal')"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body px-4 py-2 pb-4">
             <form method="post" @submit.prevent="submitHandler" spellcheck="false">
@@ -24,7 +24,7 @@
                 <label class="col-form-label">Ecosystem</label>
                 <div class="w-100">
                   <Multiselect 
-                    v-model="form.ecosystem" 
+                    v-model="form.ecosystem_id" 
                     :options="dropdownEcosystem.ecosystems"
                     :close-on-select="true"
                     :searchable="true"
@@ -37,7 +37,7 @@
                 <label class="col-form-label">Status Tribe</label>
                 <div class="w-100">
                   <Multiselect 
-                    v-model="form.status_tribe" 
+                    v-model="form.status" 
                     :options="dropdownStatus.status"
                     :close-on-select="true"
                     :searchable="false"
@@ -64,16 +64,15 @@ const emit = defineEmits(['onSubmitForm']);
 
 const dropdownStatus = useDropdownStatus();
 const dropdownEcosystem = await useDropdownEcosystem();
-console.log(dropdownEcosystem.ecosystems.value)
 
 let form = ref({
   kode_tribe: null,
   nama_tribe: null,
-  status_tribe: null,
-  ecosystem: null
+  status: null,
+  ecosystem_id: null
 });
 
-const submitHandler = () => {
-  emit('onSubmitForm', form.value);
+const submitHandler = async () => {
+  await emit('onSubmitForm', form.value);
 }
 </script>

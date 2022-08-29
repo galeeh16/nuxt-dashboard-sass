@@ -2,8 +2,11 @@ import consolaGlobalInstance from "consola";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   try {
-    if (to.path !== '/login' && to.path !== '/register') {
-    
+    if (
+      to.path !== '/login' 
+      && to.path !== '/register' 
+      && to.path !== '/forgot-password'
+    ) {
       const config = useRuntimeConfig();
       const response = await fetch(`${config.public.apiUrl}/api/v1/auth/check-token`,
       { 

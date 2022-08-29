@@ -3,15 +3,15 @@ import { ref } from 'vue';
 export function useDropdownStatus() {
   let status = ref([
     {
-      value: 'Supported',
+      value: '1',
       label: 'Supported'
     },
     {
-      value: 'Unsupported yet',
+      value: '2',
       label: 'Unsupported yet'
     },
     {
-      value: 'Not supported anymore',
+      value: '3',
       label: 'Not supported anymore'
     }
   ]);
