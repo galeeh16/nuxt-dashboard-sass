@@ -9,25 +9,28 @@
         <div class="sidebar-nav">
             <ul>
                 <li>
-                    <NuxtLink to="/" class="d-flex align-items-center"><Icon type="home" /> <span>Dashboard</span></NuxtLink>
+                    <NuxtLink to="/" class="d-flex align-items-center"><Icon type="sliders" /> <span class="ms-1">Dashboard</span></NuxtLink>
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="has-submenu d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <Icon type="layers" /> 
-                        <span>Admin</span>
+                        <span class="ms-1">Admin</span>
                     </a>
                     <ul id="collapseExample" class="collapse">
                         <li>
                             <NuxtLink href="/admin/users"><span>Users</span></NuxtLink>
                         </li>
                         <li>
+                            <NuxtLink href="/admin/ecosystems"><span>Ecosystems</span></NuxtLink>
+                        </li>
+                        <li>
                             <NuxtLink href="/admin/tribes"><span>Tribes</span></NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink href="/admin/squads"><span>Squads</span></NuxtLink>
+                            <NuxtLink href="/admin/products"><span>Products</span></NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink href="/admin/products"><span>Products</span></NuxtLink>
+                            <NuxtLink href="/admin/squads"><span>Squads</span></NuxtLink>
                         </li>
                     </ul>
 

@@ -30,8 +30,8 @@ let debounce = ref(null);
 let stringInput = ref('');
 
 function debounceSearch(event) {
-  stringInput.value = null
-  clearTimeout(debounce.value)
+  stringInput.value = null;
+  clearTimeout(debounce.value);
   debounce.value = setTimeout(() => {
     stringInput.value = event.target.value;
     emit('update:modelValue', stringInput.value)

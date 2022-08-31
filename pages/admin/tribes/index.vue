@@ -102,6 +102,7 @@ import axios from 'axios';
 import Paginate from '@/components/table/paginate.vue';
 import Search from '@/components/table/search.vue';
 import ModalAdd from '@/components/admin/tribes/add.vue';
+import Swal from 'sweetalert2';
 
 useHead({
   title: 'Management Tribes'
@@ -186,7 +187,21 @@ const submitHandler = async (params) => {
 
     modalAddTribe.value.hide();
 
-    await getData(1);
+    Swal.fire({
+      title: '',
+      text: 'Success add tribe',
+      icon: 'success',
+      showDenyButton: false,
+      showCancelButton: false,
+      confirmButtonText: 'Ok'
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        getData(1);
+      }
+    });
+
+    
 
   } catch (err) {
     showSpinner.value = false;

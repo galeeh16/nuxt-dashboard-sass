@@ -1,5 +1,5 @@
 <template>
-    <vue-feather :type="type" :size="size" v-bind="$attrs"></vue-feather>
+    <vue-feather :type="type" :size="size" v-bind="$attrs" style="display: inline-block; align-self: center; margin-right: 2px;"></vue-feather>
 </template>
 
 <script setup>

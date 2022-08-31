@@ -10,7 +10,7 @@
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<div class="d-flex align-items-center">
 								<div class="me-1">Show</div>
-								<select name="rows_per_page" id="rows_per_page" class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 66px">
+								<select name="rows_per_page" id="rows_per_page" class="form-select" v-model="perPage" @change="changePerPage" style="max-width: 70px">
 									<option value="5">5</option>
 									<option value="10">10</option>
 									<option value="25">25</option>

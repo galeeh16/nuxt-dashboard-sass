@@ -46,6 +46,7 @@
 import Sidebar from "../components/sidebar/index.vue";
 import { ref, onMounted, onUpdated } from 'vue';
 import '@vueform/multiselect/themes/default.css';
+import 'sweetalert2/src/sweetalert2.scss'
 
 useHead({
     title: 'My Nuxt App'

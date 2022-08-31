@@ -130,7 +130,7 @@ button.btn-sidebar {
 
     &.router-link-exact-active {
         color: $primary;
-        font-weight: 600;
+        font-weight: 500;
         background-color: rgba(131, 42, 255, 0.14);
 
         &::after {
@@ -162,10 +162,11 @@ button.btn-sidebar {
             display: block;
             width: 13px;
             height: 13px;
-            top: 15px;
+            top: 17px;
             right: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-            transition: transform 0.2s linear;
+            // kalo mau ganti svg color di url encoder yah, misal style="fill: #ff0000;" menjadi %20style%3D%27stroke%3A%23ff0000%3B%27
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' %20style%3D%27stroke%3A%23a1abb5%3B%27 width='13' height='13' class='bi bi-chevron-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            transition: all 0.2s linear;
         }
     }
 
@@ -177,7 +178,8 @@ button.btn-sidebar {
 
     &.has-submenu {
         &::before {
-            transform: rotate(-180deg);
+            transform: rotate(90deg);
+            filter: saturate(837%) hue-rotate(50deg);
         }
     }
 
@@ -228,7 +230,7 @@ button.btn-sidebar {
             left: 26px;
             width: 0.7rem;
             height: 0.7rem;
-            border-radius: 20px !important;
+            border-radius: 50% !important;
             box-shadow: 0 0 0 2px rgba(131, 42, 255, 0.17);
             border: 1px solid #e7eaff  !important;
         }   

@@ -65,6 +65,10 @@ h5, .h5 {
   box-shadow: none !important;
 }
 
+.multiselect.is-invalid {
+  border: 1px solid #d7083c;
+}
+
 .multiselect-search {
   border-radius: 0.375rem !important;
   border: 1px solid #eaecef;
@@ -108,12 +112,32 @@ li.multiselect-option.is-selected:hover {
   background: #8d8d91;
 }
 
+span.multiselect-caret {
+  width: 0.82rem;
+  background-color: #4d5157;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
 .page-item .page-link {
   cursor: pointer !important;
 }
 
 .page-link:focus {
   box-shadow: none !important;
+}
+
+button.swal2-styled.swal2-confirm {
+  margin: 0.3125em;
+  padding: 9px 1.1em;
+  transition: box-shadow 0.1s;
+  box-shadow: none !important;
+  background-color: #8a2aff;
+  font-weight: 500;
+}
+
+.form-control.is-invalid {
+  background-image: none !important;
 }
 
 #sidebar {
@@ -235,7 +259,7 @@ button.btn-sidebar:hover div {
 }
 .sidebar-nav ul li a.router-link-exact-active {
   color: #8a2aff;
-  font-weight: 600;
+  font-weight: 500;
   background-color: rgba(131, 42, 255, 0.14);
 }
 .sidebar-nav ul li a.router-link-exact-active::after {
@@ -262,10 +286,10 @@ button.btn-sidebar:hover div {
   display: block;
   width: 13px;
   height: 13px;
-  top: 15px;
+  top: 17px;
   right: 12px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-  transition: transform 0.2s linear;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' %20style%3D%27stroke%3A%23a1abb5%3B%27 width='13' height='13' class='bi bi-chevron-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  transition: all 0.2s linear;
 }
 
 .sidebar-nav ul li a[aria-expanded=true] {
@@ -273,7 +297,8 @@ button.btn-sidebar:hover div {
   background-color: rgba(131, 42, 255, 0.14);
 }
 .sidebar-nav ul li a[aria-expanded=true].has-submenu::before {
-  transform: rotate(-180deg);
+  transform: rotate(90deg);
+  filter: saturate(837%) hue-rotate(50deg);
 }
 .sidebar-nav ul li a[aria-expanded=true].has-children-active::after {
   content: "";
@@ -317,7 +342,7 @@ button.btn-sidebar:hover div {
   left: 26px;
   width: 0.7rem;
   height: 0.7rem;
-  border-radius: 20px !important;
+  border-radius: 50% !important;
   box-shadow: 0 0 0 2px rgba(131, 42, 255, 0.17);
   border: 1px solid #e7eaff !important;
 }
@@ -4671,7 +4696,7 @@ textarea.form-control-lg {
   --bs-card-inner-border-radius: 10px !important;
   --bs-card-cap-padding-y: 12px;
   --bs-card-cap-padding-x: 1rem;
-  --bs-card-cap-bg: white !important;
+  --bs-card-cap-bg: transparent !important;
   --bs-card-cap-color: ;
   --bs-card-height: ;
   --bs-card-color: ;
